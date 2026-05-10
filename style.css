@@ -160,6 +160,8 @@ body {
 .menu-btn {
     display: none;
     cursor: pointer;
+    z-index: 1001;
+    position: relative;
 }
 
 .menu-btn__burger {
@@ -186,6 +188,18 @@ body {
 
 .menu-btn__burger::after {
     transform: translateY(8px);
+}
+
+.menu-btn.active .menu-btn__burger {
+    background: transparent;
+}
+
+.menu-btn.active .menu-btn__burger::before {
+    transform: rotate(45deg);
+}
+
+.menu-btn.active .menu-btn__burger::after {
+    transform: rotate(-45deg);
 }
 
 /* Hero Section */
@@ -789,7 +803,10 @@ section {
     font-size: 0.8rem;
 }
 
-/* Responsive */
+/* ========================================
+   MOBILE RESPONSIVE
+   ======================================== */
+
 @media (max-width: 968px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -818,9 +835,13 @@ section {
         background: #09090b;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         padding: 80px 0;
         transition: top 0.3s ease;
-        z-index: 999;
+        z-index: 1000;
+        height: auto;
+        max-height: 100vh;
+        overflow-y: auto;
     }
     
     .nav-links.active {
@@ -829,24 +850,13 @@ section {
     
     .menu-btn {
         display: block;
-        z-index: 1000;
     }
     
-    .menu-btn.active .menu-btn__burger {
-        background: transparent;
-    }
-    
-    .menu-btn.active .menu-btn__burger::before {
-        transform: rotate(45deg);
+    body.menu-open {
+        overflow: hidden;
     }
 }
 
-
-/* ========================================
-   ADDITIONAL MOBILE FIXES - NO GLITCH
-   ======================================== */
-
-/* Fix for mobile - ensure proper spacing */
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
@@ -898,25 +908,6 @@ section {
         overflow-x: auto;
     }
     
-    .code-line {
-        white-space: pre-wrap;
-        word-break: break-word;
-    }
-    
-    .code-line.indent {
-        margin-left: 10px;
-    }
-    
-    .gradient-sphere {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .gradient-sphere-2 {
-        width: 150px;
-        height: 150px;
-    }
-    
     .hero-stats {
         gap: 20px;
     }
@@ -964,13 +955,8 @@ section {
     .contact-info {
         text-align: center;
     }
-    
-    .section-tag {
-        font-size: 0.6rem;
-    }
 }
 
-/* Fix for very small phones */
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
@@ -1007,127 +993,13 @@ section {
         font-size: 0.6rem;
     }
     
-    .project-card {
-        margin: 0;
-    }
-    
     .project-info {
         padding: 15px;
     }
 }
 
-/* Fix for tablet landscape */
-@media (max-width: 968px) and (orientation: landscape) {
-    .hero {
-        min-height: auto;
-        padding: 120px 0 60px;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    section {
-        padding: 40px 0;
-    }
-}
-
-/* Ensure cursor is hidden on touch devices */
 @media (hover: none) and (pointer: coarse) {
     .cursor, .cursor-follower {
         display: none;
     }
-}
-
-
-/* ========================================
-   FIX DROPDOWN ON MOBILE SCROLL
-   ======================================== */
-
-/* Fix for mobile navigation */
-@media (max-width: 968px) {
-    /* Prevent nav-links from showing during scroll */
-    .nav-links {
-        position: fixed;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        background: #09090b;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 80px 0;
-        transition: top 0.3s ease;
-        z-index: 998;
-        height: auto;
-        max-height: 100vh;
-        overflow-y: auto;
-    }
-    
-    /* Only show when active class is added */
-    .nav-links.active {
-        top: 0;
-    }
-    
-    /* Ensure menu button stays on top */
-    .menu-btn {
-        display: block;
-        z-index: 1000;
-        position: relative;
-    }
-    
-    /* Prevent body scroll when menu is open */
-    body.menu-open {
-        overflow: hidden;
-    }
-    
-    /* Close menu when clicking a link */
-    .nav-link {
-        cursor: pointer;
-    }
-}
-
-/* Additional fix for any rogue dropdowns */
-.dropdown-menu {
-    display: none !important;
-}
-
-/* Only show dropdown when explicitly opened */
-.dropdown-menu.show {
-    display: block !important;
-}
-
-/* Fix for any absolute positioned elements on scroll */
-.navbar {
-    overflow: visible;
-}
-
-.nav-container {
-    position: relative;
-}
-
-/* Add to your CSS if not already there */
-body.menu-open {
-    overflow: hidden;
-}
-
-.nav-links {
-    position: fixed;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    background: #09090b;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 0;
-    transition: top 0.3s ease;
-    z-index: 998;
-    height: auto;
-    max-height: 100vh;
-    overflow-y: auto;
-}
-
-.nav-links.active {
-    top: 0;
 }
