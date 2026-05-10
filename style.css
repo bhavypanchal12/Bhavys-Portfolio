@@ -840,3 +840,201 @@ section {
         transform: rotate(45deg);
     }
 }
+
+
+/* ========================================
+   ADDITIONAL MOBILE FIXES - NO GLITCH
+   ======================================== */
+
+/* Fix for mobile - ensure proper spacing */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-grid {
+        gap: 20px;
+    }
+    
+    .skill-category {
+        padding: 20px;
+    }
+    
+    .skill-item {
+        grid-template-columns: 25px 70px 1fr;
+        gap: 8px;
+    }
+    
+    .code-body {
+        font-size: 0.7rem;
+        overflow-x: auto;
+    }
+    
+    .code-line {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    
+    .code-line.indent {
+        margin-left: 10px;
+    }
+    
+    .gradient-sphere {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .gradient-sphere-2 {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .hero-stats {
+        gap: 20px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+    
+    .about-info-grid {
+        gap: 15px;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .image-placeholder {
+        height: 300px;
+    }
+    
+    .image-placeholder i {
+        font-size: 60px;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .contact-content {
+        gap: 40px;
+    }
+    
+    .contact-info {
+        text-align: center;
+    }
+    
+    .section-tag {
+        font-size: 0.6rem;
+    }
+}
+
+/* Fix for very small phones */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-container {
+        padding: 0 16px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .code-body {
+        font-size: 0.6rem;
+        padding: 12px;
+    }
+    
+    .skill-item {
+        grid-template-columns: 20px 60px 1fr;
+        gap: 6px;
+        font-size: 0.75rem;
+    }
+    
+    .stat-number {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.6rem;
+    }
+    
+    .project-card {
+        margin: 0;
+    }
+    
+    .project-info {
+        padding: 15px;
+    }
+}
+
+/* Fix for tablet landscape */
+@media (max-width: 968px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 120px 0 60px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+}
+
+/* Ensure cursor is hidden on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .cursor, .cursor-follower {
+        display: none;
+    }
+}
