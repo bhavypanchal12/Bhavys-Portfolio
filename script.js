@@ -398,3 +398,101 @@ window.addEventListener('resize', () => {
         body.classList.remove('menu-open');
     }
 });
+
+// ============================================
+// MOBILE MENU TOGGLE - IMPROVED (FIX FOR SCROLL)
+// ============================================
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const body = document.body;
+
+if (menuBtn) {
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        body.classList.toggle('menu-open');
+        
+        // Prevent body scroll when menu is open
+        if (navLinks.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Close menu when clicking on a nav link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+        body.style.overflow = 'auto';
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navLinks && navLinks.classList.contains('active')) {
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+            menuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.classList.remove('menu-open');
+            body.style.overflow = 'auto';
+        }
+    }
+});
+
+// Close menu on window resize (when switching to desktop)
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 968) {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+        body.style.overflow = 'auto';
+    }
+});
+
+// Close menu when pressing ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (navLinks && navLinks.classList.contains('active')) {
+            menuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.classList.remove('menu-open');
+            body.style.overflow = 'auto';
+        }
+    }
+});
+
+// Add this to your existing script
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const body = document.body;
+
+if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    });
+}
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+    });
+});
+
+// Close menu on window resize (if open)
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 968) {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+});
