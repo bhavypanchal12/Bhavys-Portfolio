@@ -366,3 +366,35 @@ window.addEventListener('load', function() {
     // All images and resources are loaded
     console.log('✅ Portfolio fully loaded!');
 });
+
+
+// Add this to your existing script
+const menuBtn = document.querySelector('.menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const body = document.body;
+
+if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    });
+}
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+    });
+});
+
+// Close menu on window resize (if open)
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 968) {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+});
