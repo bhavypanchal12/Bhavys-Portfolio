@@ -385,3 +385,24 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
     console.log('✅ Portfolio fully loaded!');
 });
+
+
+
+// ============================================
+// HIDE NAV LINKS ON MOBILE SCROLL
+// ============================================
+let scrollTimer;
+const body = document.body;
+
+window.addEventListener('scroll', function() {
+    // Add scrolling class
+    body.classList.add('scrolling');
+    
+    // Clear previous timer
+    clearTimeout(scrollTimer);
+    
+    // Remove scrolling class after 1 second of no scrolling
+    scrollTimer = setTimeout(function() {
+        body.classList.remove('scrolling');
+    }, 1000);
+});
