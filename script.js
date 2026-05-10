@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             cursorFollower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
         });
 
-        // Hover effect on buttons and links
         const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-link, .social-link');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -59,24 +58,73 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ============================================
-    // MOBILE MENU TOGGLE
+    // MOBILE MENU TOGGLE - FIXED VERSION
     // ============================================
     const menuBtn = document.querySelector('.menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
 
     if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             menuBtn.classList.toggle('active');
             navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            if (navLinks.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
         });
     }
 
-    // Close menu when clicking on a link
+    // Close menu when clicking on a nav link
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
+            if (menuBtn) {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+                body.style.overflow = 'auto';
+            }
         });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks && navLinks.classList.contains('active')) {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+                body.style.overflow = 'auto';
+            }
+        }
+    });
+
+    // Close menu on window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 968) {
+            if (menuBtn) {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+                body.style.overflow = 'auto';
+            }
+        }
+    });
+
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (navLinks && navLinks.classList.contains('active')) {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+                body.style.overflow = 'auto';
+            }
+        }
     });
 
     // ============================================
@@ -128,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Trigger counter when stats come into view
     const statsSection = document.querySelector('.hero-stats');
     let animated = false;
 
@@ -207,14 +254,11 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
             const name = this.querySelector('input[placeholder="Your Name"]').value;
             const email = this.querySelector('input[placeholder="Your Email"]').value;
             const message = this.querySelector('textarea').value;
             
-            // Simple validation
             if (name && email && message) {
-                // Show success message (you can replace with actual form submission)
                 alert('✨ Thank you ' + name + '! Your message has been sent. I\'ll get back to you soon!');
                 this.reset();
             } else {
@@ -277,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // PREVENT RIGHT CLICK ON IMAGES (Optional)
+    // PREVENT RIGHT CLICK ON IMAGES
     // ============================================
     document.querySelectorAll('img').forEach(img => {
         img.addEventListener('contextmenu', (e) => {
@@ -312,25 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // PREVENT SCROLLING WHEN MOBILE MENU IS OPEN
-    // ============================================
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                document.body.style.overflow = 'auto';
-            });
-        });
-    }
-
-    // ============================================
     // CONSOLE WELCOME MESSAGE
     // ============================================
     console.log('%c⚡ BHAVY PANCHAL - FUTURISTIC PORTFOLIO', 'color: #dc143c; font-size: 20px; font-weight: bold;');
@@ -360,139 +385,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
-// PRELOADER FOR IMAGES (Optional)
+// PRELOADER FOR IMAGES
 // ============================================
 window.addEventListener('load', function() {
-    // All images and resources are loaded
     console.log('✅ Portfolio fully loaded!');
-});
-
-
-// Add this to your existing script
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
-const body = document.body;
-
-if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    });
-}
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        menuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-    });
-});
-
-// Close menu on window resize (if open)
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 968) {
-        menuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-    }
-});
-
-// ============================================
-// MOBILE MENU TOGGLE - IMPROVED (FIX FOR SCROLL)
-// ============================================
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
-const body = document.body;
-
-if (menuBtn) {
-    menuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        body.classList.toggle('menu-open');
-        
-        // Prevent body scroll when menu is open
-        if (navLinks.classList.contains('active')) {
-            body.style.overflow = 'hidden';
-        } else {
-            body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Close menu when clicking on a nav link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        menuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-        body.style.overflow = 'auto';
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (navLinks && navLinks.classList.contains('active')) {
-        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-            menuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-            body.classList.remove('menu-open');
-            body.style.overflow = 'auto';
-        }
-    }
-});
-
-// Close menu on window resize (when switching to desktop)
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 968) {
-        menuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-        body.style.overflow = 'auto';
-    }
-});
-
-// Close menu when pressing ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        if (navLinks && navLinks.classList.contains('active')) {
-            menuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-            body.classList.remove('menu-open');
-            body.style.overflow = 'auto';
-        }
-    }
-});
-
-// Add this to your existing script
-const menuBtn = document.querySelector('.menu-btn');
-const navLinks = document.querySelector('.nav-links');
-const body = document.body;
-
-if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    });
-}
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        menuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-    });
-});
-
-// Close menu on window resize (if open)
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 968) {
-        menuBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-    }
 });
