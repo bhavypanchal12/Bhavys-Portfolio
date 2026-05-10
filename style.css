@@ -1038,3 +1038,70 @@ section {
         display: none;
     }
 }
+
+
+/* ========================================
+   FIX DROPDOWN ON MOBILE SCROLL
+   ======================================== */
+
+/* Fix for mobile navigation */
+@media (max-width: 968px) {
+    /* Prevent nav-links from showing during scroll */
+    .nav-links {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        background: #09090b;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 0;
+        transition: top 0.3s ease;
+        z-index: 998;
+        height: auto;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+    
+    /* Only show when active class is added */
+    .nav-links.active {
+        top: 0;
+    }
+    
+    /* Ensure menu button stays on top */
+    .menu-btn {
+        display: block;
+        z-index: 1000;
+        position: relative;
+    }
+    
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    /* Close menu when clicking a link */
+    .nav-link {
+        cursor: pointer;
+    }
+}
+
+/* Additional fix for any rogue dropdowns */
+.dropdown-menu {
+    display: none !important;
+}
+
+/* Only show dropdown when explicitly opened */
+.dropdown-menu.show {
+    display: block !important;
+}
+
+/* Fix for any absolute positioned elements on scroll */
+.navbar {
+    overflow: visible;
+}
+
+.nav-container {
+    position: relative;
+}
