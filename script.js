@@ -414,3 +414,5 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
     console.log('✅ Portfolio fully loaded!');
 });
+
+
