@@ -92,7 +92,7 @@ body {
 .navbar.scrolled {
     background: rgba(9, 9, 11, 0.95);
     backdrop-filter: blur(10px);
-    padding: 15px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #27272a;
 }
 
@@ -620,6 +620,7 @@ section {
     background: #27272a;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 }
 
 .skill-progress {
@@ -628,6 +629,10 @@ section {
     border-radius: 10px;
     width: 0;
     transition: width 1s ease;
+}
+
+.skill-item::after {
+    display: none !important;
 }
 
 /* Projects Section */
@@ -799,7 +804,12 @@ section {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
+    .gradient-sphere,
+    .gradient-sphere-2 {
+        animation: none;
+    }
+
     .hero-stats {
         justify-content: center;
     }
@@ -820,21 +830,24 @@ section {
     
     .nav-links {
         position: fixed;
-        top: -100%;
+        top: 0;
         left: 0;
         width: 100%;
+        height: 100vh;
         background: #09090b;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 80px 0;
-        transition: top 0.3s ease;
         z-index: 999;
         gap: 20px;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        visibility: hidden;
     }
     
     .nav-links.active {
-        top: 0;
+        transform: translateY(0);
+        visibility: visible;
     }
     
     .menu-btn.active .menu-btn__burger {
@@ -1016,102 +1029,5 @@ section {
     }
 }
 
-/* Fix for skills section - remove any unwanted dropdowns */
-.skill-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
-.skill-item {
-    display: grid;
-    grid-template-columns: 30px 80px 1fr;
-    align-items: center;
-    gap: 12px;
-}
 
-.skill-item i {
-    font-size: 1.2rem;
-    color: #dc143c;
-}
-
-.skill-item span {
-    font-size: 0.85rem;
-}
-
-/* Remove any default dropdown arrows */
-.skill-item::after {
-    display: none !important;
-}
-
-.skill-bar {
-    height: 6px;
-    background: #27272a;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-progress {
-    height: 100%;
-    background: linear-gradient(90deg, #dc143c, #ff0000);
-    border-radius: 10px;
-    width: 0;
-    transition: width 1s ease;
-}
-
-/* Ensure no dropdown indicators appear */
-details > summary {
-    list-style: none;
-}
-
-details > summary::-webkit-details-marker {
-    display: none;
-}
-/* ========================================
-   HIDE NAV LINKS ON MOBILE SCROLL
-   ======================================== */
-
-/* Hide nav links by default on mobile, only show hamburger */
-@media (max-width: 968px) {
-    .nav-links {
-        position: fixed;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        background: #09090b;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 80px 0;
-        transition: top 0.3s ease;
-        z-index: 999;
-        gap: 20px;
-    }
-    
-    /* Only show when hamburger is clicked */
-    .nav-links.active {
-        top: 0;
-    }
-    
-    /* Hamburger button stays visible */
-    .menu-btn {
-        display: block;
-        z-index: 1001;
-    }
-    
-    /* Hide nav links when scrolling */
-    body.scrolling .nav-links:not(.active) {
-        display: none;
-    }
-}
-
-/* Smooth transition for header */
-.navbar {
-    transition: all 0.3s ease;
-}
-
-/* Optional: Shrink header on scroll */
-.navbar.scrolled {
-    padding: 10px 0;
-}
