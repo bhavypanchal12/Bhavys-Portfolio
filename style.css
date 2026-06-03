@@ -1173,11 +1173,7 @@ section {
     }
 }
 
-@media (max-width: 968px) {
-    .cursor, .cursor-follower {
-        display: none;
-    }
-}
+
 
 @media (max-width: 968px) and (orientation: landscape) {
     .hero {
