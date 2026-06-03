@@ -263,39 +263,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // PARALLAX EFFECT ON HERO
+    // PARALLAX EFFECT ON HERO (desktop only)
     // ============================================
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const spheres = document.querySelectorAll('.gradient-sphere, .gradient-sphere-2');
-        spheres.forEach((sphere, index) => {
-            const speed = index === 0 ? 0.5 : 0.3;
-            sphere.style.transform = `translateY(${scrolled * speed}px)`;
+    if (window.innerWidth > 968) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const spheres = document.querySelectorAll('.gradient-sphere, .gradient-sphere-2');
+            spheres.forEach((sphere, index) => {
+                const speed = index === 0 ? 0.5 : 0.3;
+                sphere.style.transform = `translateY(${scrolled * speed}px)`;
+            });
         });
-    });
+    }
 
     // ============================================
     // PROJECT CARD HOVER 3D EFFECT
     // ============================================
     const projectCards = document.querySelectorAll('.project-card');
+
+    function handleTilt(e, card) {
+        const rect = card.getBoundingClientRect();
+        const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+    }
+
+    function resetTilt(card) {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+    }
+
     projectCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-        });
+        card.addEventListener('mousemove', (e) => handleTilt(e, card));
+        card.addEventListener('mouseleave', () => resetTilt(card));
+        card.addEventListener('touchmove', (e) => handleTilt(e, card), { passive: true });
+        card.addEventListener('touchend', () => resetTilt(card));
     });
 
     // ============================================
@@ -387,22 +397,3 @@ window.addEventListener('load', function() {
 });
 
 
-
-// ============================================
-// HIDE NAV LINKS ON MOBILE SCROLL
-// ============================================
-let scrollTimer;
-const body = document.body;
-
-window.addEventListener('scroll', function() {
-    // Add scrolling class
-    body.classList.add('scrolling');
-    
-    // Clear previous timer
-    clearTimeout(scrollTimer);
-    
-    // Remove scrolling class after 1 second of no scrolling
-    scrollTimer = setTimeout(function() {
-        body.classList.remove('scrolling');
-    }, 1000);
-});
