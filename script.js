@@ -1,5 +1,5 @@
     // ============================================
-    // GEN-Z FUTURISTIC PORTFOLIO - MAIN JS
+    //  PORTFOLIO - MAIN JS
     // ============================================
 
     // Wait for DOM to load
@@ -41,7 +41,8 @@
             }
         }
 
-        if (cursor && cursorFollower) {
+    if (cursor && cursorFollower) {
+        if (window.innerWidth > 968) {
             document.addEventListener('mousemove', (e) => moveCursor(e.clientX, e.clientY));
 
             const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-link, .social-link');
@@ -49,20 +50,8 @@
                 el.addEventListener('mouseenter', () => scaleCursor(true));
                 el.addEventListener('mouseleave', () => scaleCursor(false));
             });
-
-            document.addEventListener('touchmove', (e) => {
-                const touch = e.touches[0];
-                moveCursor(touch.clientX, touch.clientY);
-            }, { passive: true });
-
-            document.addEventListener('touchstart', (e) => {
-                const touch = e.touches[0];
-                moveCursor(touch.clientX, touch.clientY);
-                scaleCursor(true);
-            }, { passive: true });
-
-            document.addEventListener('touchend', () => scaleCursor(false));
         }
+    }
 
         // ============================================
         // NAVBAR SCROLL EFFECT
