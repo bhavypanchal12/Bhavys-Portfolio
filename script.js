@@ -24,25 +24,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
 
-    if (cursor && cursorFollower && window.innerWidth > 968) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
-            cursorFollower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
-        });
+    function moveCursor(x, y) {
+        cursor.style.transform = `translate(${x - 4}px, ${y - 4}px)`;
+        cursorFollower.style.transform = `translate(${x - 20}px, ${y - 20}px)`;
+    }
+
+    function scaleCursor(active) {
+        if (active) {
+            cursor.style.transform = 'scale(2)';
+            cursorFollower.style.transform = 'scale(1.5)';
+            cursorFollower.style.borderColor = '#dc143c';
+        } else {
+            cursor.style.transform = 'scale(1)';
+            cursorFollower.style.transform = 'scale(1)';
+            cursorFollower.style.borderColor = 'rgba(220, 20, 60, 0.5)';
+        }
+    }
+
+    if (cursor && cursorFollower) {
+        document.addEventListener('mousemove', (e) => moveCursor(e.clientX, e.clientY));
 
         const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-link, .social-link');
         hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-                cursorFollower.style.transform = 'scale(1.5)';
-                cursorFollower.style.borderColor = '#dc143c';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursorFollower.style.transform = 'scale(1)';
-                cursorFollower.style.borderColor = 'rgba(220, 20, 60, 0.5)';
-            });
+            el.addEventListener('mouseenter', () => scaleCursor(true));
+            el.addEventListener('mouseleave', () => scaleCursor(false));
         });
+
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            moveCursor(touch.clientX, touch.clientY);
+        }, { passive: true });
+
+        document.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            moveCursor(touch.clientX, touch.clientY);
+            scaleCursor(true);
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => scaleCursor(false));
     }
 
     // ============================================
@@ -395,5 +414,3 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
     console.log('✅ Portfolio fully loaded!');
 });
-
-
