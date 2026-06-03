@@ -874,6 +874,11 @@ section {
     .skills-grid {
         grid-template-columns: 1fr;
     }
+
+    .about-content {
+        gap: 40px;
+        padding: 30px;
+    }
     
     .menu-btn {
         display: block;
@@ -989,20 +994,29 @@ section {
     }
     
     .about-content {
+        gap: 40px;
         padding: 24px;
+        text-align: center;
+    }
+
+    .about-text h3 {
+        font-size: 1.3rem;
     }
 
     .about-info-grid {
-        gap: 15px;
+        gap: 12px;
     }
     
     .info-item {
         flex-direction: column;
         text-align: center;
+        padding: 10px 12px;
     }
-    
+
     .image-frame {
-        height: 300px;
+        height: 280px;
+        max-width: 320px;
+        margin: 0 auto;
     }
     
     .social-links {
@@ -1054,6 +1068,31 @@ section {
         font-size: 0.6rem;
     }
     
+    .about-content {
+        padding: 20px 16px;
+        gap: 30px;
+    }
+
+    .about-text h3 {
+        font-size: 1.1rem;
+    }
+
+    .about-info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .info-item {
+        flex-direction: row;
+        text-align: left;
+        padding: 10px 14px;
+    }
+
+    .image-frame {
+        height: 240px;
+        max-width: 280px;
+    }
+
     .project-info {
         padding: 15px;
     }
