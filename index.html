@@ -3,380 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡PORTFOLIO | Bhavy Panchal</title>
+    <title>Bhavy Panchal — Creative Developer</title>
+    <meta name="description" content="Portfolio of Bhavy Panchal — Full Stack Developer, AI Engineer & Creative Technologist.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- Loading Screen -->
-    <div class="loader">
-        <div class="loader-content">
-            <div class="loader-ring"></div>
-            <div class="loader-text">LOADING<span class="loader-dots">...</span></div>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="pre-center">
+            <div class="pre-label">Loading experience</div>
+            <div class="pre-count" id="preCount">0</div>
         </div>
+        <div class="pre-bar"><div class="pre-bar-fill" id="preBar"></div></div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">⚡</div>
-                <div class="logo-text">BHAVY<span class="logo-highlight"> Panchal</span></div>
-            </div>
-            <div class="nav-links">
-                <a href="#home" class="nav-link active">HOME</a>
-                <a href="#about" class="nav-link">ABOUT</a>
-                <a href="#skills" class="nav-link">SKILLS</a>
-                <a href="#projects" class="nav-link">PROJECTS</a>
-                <a href="#contact" class="nav-link">CONTACT</a>
-            </div>
-            <div class="menu-btn">
-                <div class="menu-btn__burger"></div>
-            </div>
-        </div>
-    </nav>
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"><span class="cursor-label" id="cursorLabel"></span></div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="gradient-sphere"></div>
-            <div class="gradient-sphere-2"></div>
-        </div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    AVAILABLE FOR WORK
+    <!-- Scroll progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Grain -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- WebGL canvas -->
+    <canvas id="gl"></canvas>
+
+    <!-- Nav -->
+    <header class="nav" id="nav">
+        <a href="#hero" class="nav-logo" data-cursor="home">BHVY<span>®</span></a>
+        <nav class="nav-menu">
+            <a href="#work" class="nav-link" data-cursor="view">Work</a>
+            <a href="#about" class="nav-link" data-cursor="view">About</a>
+            <a href="#expertise" class="nav-link" data-cursor="view">Expertise</a>
+        </nav>
+        <a href="#contact" class="nav-cta" data-magnetic data-cursor="go">Let's talk <i class="fas fa-arrow-right-long"></i></a>
+        <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-links">
+            <a href="#work"><span>01</span>Work</a>
+            <a href="#about"><span>02</span>About</a>
+            <a href="#expertise"><span>03</span>Expertise</a>
+            <a href="#contact"><span>04</span>Contact</a>
+        </nav>
+    </div>
+
+    <main id="main">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero" id="hero">
+            <div class="hero-aura" aria-hidden="true"></div>
+
+            <div class="hero-inner">
+                <div class="hero-top">
+                    <div class="hero-tag"><span class="pulse"></span> Available for freelance — 2026</div>
+                    <div class="hero-loc">Mehsana, Gujarat <span>23.6°N</span></div>
                 </div>
+
                 <h1 class="hero-title">
-<span class="title-gradient">BHAVY</span><br>
-<span class="title-outline">PANCHAL</span><br>
-<span class="title-gradient">DEVELOPER</span>
+                    <span class="ht-row">
+                        <span class="ht-line"><span class="ht-word">BHAVY</span></span>
+                        <span class="ht-side">
+                            <span class="ht-line ht-sub"><span class="ht-word ht-side-line">DEVELOPER</span></span>
+                            <span class="ht-line ht-sub"><span class="ht-word ht-side-line ht-accent">&amp; AI PROMPT</span></span>
+                            <span class="ht-line ht-sub"><span class="ht-word ht-side-line">EXPERT</span></span>
+                        </span>
+                    </span>
+                    <span class="ht-line"><span class="ht-word ht-stroke">PANCHAL</span></span>
                 </h1>
-                <p class="hero-desc">Diploma IT Student • Full Stack Developer • AI Prompt Expert • Cybersecurity Learner • Creating digital experiences that break boundaries</p>
-                <div class="hero-buttons">
-                    <button class="btn-primary" id="exploreBtn">
-                        EXPLORE WORK <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="fab fa-github"></i> GITHUB
-                    </button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number" data-count="3">0</span>
-                        <span class="stat-label">PROJECTS</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="6">0</span>
-                        <span class="stat-label">COMMITS</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="1">0</span>
-                        <span class="stat-label">CLIENTS</span>
+
+                <div class="hero-foot">
+                    <p class="hero-desc">I craft immersive digital experiences where design,
+                        code and intelligence collide — built for impact, tuned for speed.</p>
+                    <div class="hero-scroll">
+                        <span>Scroll</span>
+                        <div class="scroll-line"><i></i></div>
                     </div>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="code-window">
-                    <div class="code-header">
-                        <span class="code-dot red"></span>
-                        <span class="code-dot yellow"></span>
-                        <span class="code-dot green"></span>
-                        <span class="code-title">portfolio.tsx</span>
-                    </div>
-                    <div class="code-body">
-                        <div class="code-line">
-                            <span class="code-keyword">const</span>
-                            <span class="code-variable">developer</span>
-                            <span class="code-operator">=</span>
-                            <span class="code-brace">{</span>
-                        </div>
-                        <div class="code-line indent">
-                            <span class="code-prop">name</span>: <span class="code-string">"Bhavy Panchal"</span>,
-                        </div>
-                        <div class="code-line indent">
-                            <span class="code-prop">age</span>: <span class="code-number">18</span>,
-                        </div>
-                        <div class="code-line indent">
-                            <span class="code-prop">skills</span>: [<span class="code-string">"PHP"</span>, <span class="code-string">"JS"</span>, <span class="code-string">"HTML/CSS"</span>, <span class="code-string">"Python"</span>],
-                        </div>
-                        <div class="code-line indent">
-                            <span class="code-prop">passion</span>: <span class="code-string">"Building the future"</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="code-brace">}</span><span class="code-operator">;</span>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="hero-index" aria-hidden="true">
+                <span>PORTFOLIO</span><span>©2026</span>
+            </div>
+        </section>
+
+        <!-- ============ TICKER ============ -->
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <span>DESIGN</span><i>✦</i><span>DEVELOP</span><i>✦</i><span>DEPLOY</span><i>✦</i>
+                <span>DESIGN</span><i>✦</i><span>DEVELOP</span><i>✦</i><span>DEPLOY</span><i>✦</i>
+                <span>DESIGN</span><i>✦</i><span>DEVELOP</span><i>✦</i><span>DEPLOY</span><i>✦</i>
+                <span>DESIGN</span><i>✦</i><span>DEVELOP</span><i>✦</i><span>DEPLOY</span><i>✦</i>
             </div>
         </div>
 
-    </section>
+        <!-- ============ MANIFESTO ============ -->
+        <section class="manifesto" id="about">
+            <div class="container">
+                <div class="m-label reveal"><span>01</span> About me</div>
+                <p class="m-text" data-splitlines>Full-Stack Developer <span class="hl">&amp;</span> AI Prompt Expert</p>
+                <p class="m-desc reveal">I specialize in developing modern PHP web applications, AI-powered tools,
+                    and secure software systems. My goal is to build impactful technology solutions that
+                    solve real-world problems while continuously expanding my expertise in software
+                    engineering and AI Prompt Engineering.</p>
+                <div class="m-row">
+                    <div class="m-portrait reveal">
+                        <div class="m-img"><img src="assets/Bhavys-pic.jpeg" alt="Bhavy Panchal"></div>
+                        <div class="m-caption"><span class="pulse"></span> Bhavy Panchal — Developer</div>
+                    </div>
+                    <div class="m-side">
+                        <div class="m-stat reveal"><b data-count="15">0</b><span>Projects shipped</span></div>
+                        <div class="m-stat reveal"><b data-count="10">0</b><span>Technologies</span></div>
+                        <div class="m-stat reveal"><b data-count="3">0</b><span>Years building</span></div>
+                        <a href="#contact" class="m-link reveal" data-magnetic data-cursor="go">
+                            More about me <i class="fas fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">01. ABOUT ME</span>
-                <h2 class="section-title">WHO AM <span class="highlight">I?</span></h2>
-                <div class="section-line"></div>
+        <!-- ============ WORK — HORIZONTAL SCROLL ============ -->
+        <section class="work" id="work">
+            <div class="work-head container">
+                <div class="m-label reveal"><span>02</span> Selected work</div>
+                <h2 class="work-title reveal">Projects that<br><em>ship &amp; perform</em></h2>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    
-                    <p class="about-greeting">👋 Hey there! I'm Bhavy Panchal</p>
-                    <h3>~<span class="highlight">Full-Stack Developer </span>|AI Prompt Expert | Cybersecurity Learner</h3>
-                    <p>
-I specialize in developing modern PHP web applications in, AI-powered tools, and secure software systems. My goal is to build impactful technology solutions that solve real-world problems while continuously expanding my expertise in software engineering and AI Prompt Engineering.
-</p>
-                    <div class="about-info-grid">
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Location</strong>
-                                <p>Mehsana, Gujarat</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <p>panchalbhavya145@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-code"></i>
-                            <div>
-                                <strong>Experience</strong>
-                                <p>3+ Projects Built <br>Hands-On Project Experience</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <strong>Education</strong>
-                                <p>Diploma in Information Technology [GUNI]</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-wrapper">
-                        <div class="image-glow"></div>
-                        <div class="image-frame">
-                            <img src="assets/Bhavys-pic.jpeg" alt="Bhavy Panchal" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">02. MY SKILLS</span>
-                <h2 class="section-title">TECH <span class="highlight">STACK</span></h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> FRONTEND</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML5</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="99"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS3</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="98"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js"></i>
-                            <span>JavaScript</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="90"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-react"></i>
-                            <span>React</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="70"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> BACKEND</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-php"></i>
-                            <span>PHP</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="90"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>MySQL</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="88"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="75"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>Node.js</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="70"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-paint-brush"></i> DESIGN</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-figma"></i>
-                            <span>Figma</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="85"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-palette"></i>
-                            <span>UI/UX</span>
-                            <div class="skill-bar"><div class="skill-progress" data-skill="82"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="work-pin" id="workPin">
+                <div class="work-track" id="workTrack">
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">03. FEATURED WORK</span>
-                <h2 class="section-title">FEATURED <span class="highlight">PROJECTS</span></h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/project-testifyx.png" alt="TestifyX Exam Platform" loading="lazy">
-                        <div class="project-overlay">
-                            <i class="fas fa-external-link-alt"></i>
+                    <article class="w-card" data-cursor="open">
+                        <div class="wc-media">
+                            <img src="assets/project-testifyx.png" alt="TestifyX">
+                            <div class="wc-overlay"></div>
                         </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>TestifyX Exam Platform</h3>
-                        <p>Advanced online examination platform with secure test management and anti-cheat features, real-time monitoring, and powerful admin controls.</p>
-                        <div class="project-tech">
-                            <span>PHP</span>
-                            <span>MySQL</span>
-                            <span>HTML/CSS</span>
-                            <span>JavaScript</span>
+                        <div class="wc-body">
+                            <div class="wc-num">01 / 03</div>
+                            <h3>TestifyX</h3>
+                            <p>AI-verified testimonial platform with trust scoring and fraud detection.</p>
+                            <div class="wc-tags"><span>React</span><span>Node</span><span>AI</span></div>
                         </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/project-dharmi_ai.png" alt="AI Chat Assistant / Best Friend" loading="lazy">
-                        <div class="project-overlay">
-                            <i class="fas fa-external-link-alt"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>AI Chat Assistant / Best Friend</h3>
-                        <p>Your AI bestie / Best friend designed to chat, support, and make every conversation more personal and meaningful.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Flask</span>
-                            <span>HTML/CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/project-portfolio.png" alt="Bhavys Portfolio" loading="lazy">
-                        <div class="project-overlay">
-                            <i class="fas fa-external-link-alt"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Bhavys Portfolio</h3>
-                        <p>Modern developer portfolio showcasing projects, skills, and achievements through an immersive and interactive web experience.</p>
-                        <div class="project-tech">
-                            <span>HTML/CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <div class="wc-go"><i class="fas fa-arrow-up-right-from-square"></i></div>
+                    </article>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">04. GET IN TOUCH</span>
-                <h2 class="section-title">LET'S <span class="highlight">CONNECT</span></h2>
-                <div class="section-line"></div>
+                    <article class="w-card" data-cursor="open">
+                        <div class="wc-media">
+                            <img src="assets/project-dharmi_ai.png" alt="Dharmi AI">
+                            <div class="wc-overlay"></div>
+                        </div>
+                        <div class="wc-body">
+                            <div class="wc-num">02 / 03</div>
+                            <h3>Dharmi AI</h3>
+                            <p>Conversational assistant driven by advanced prompt engineering.</p>
+                            <div class="wc-tags"><span>Python</span><span>LLM</span><span>API</span></div>
+                        </div>
+                        <div class="wc-go"><i class="fas fa-arrow-up-right-from-square"></i></div>
+                    </article>
+
+                    <article class="w-card" data-cursor="open">
+                        <div class="wc-media">
+                            <img src="assets/project-portfolio.png" alt="Portfolio System">
+                            <div class="wc-overlay"></div>
+                        </div>
+                        <div class="wc-body">
+                            <div class="wc-num">03 / 03</div>
+                            <h3>Design System</h3>
+                            <p>Component library with motion baked into every primitive.</p>
+                            <div class="wc-tags"><span>HTML</span><span>CSS</span><span>GSAP</span></div>
+                        </div>
+                        <div class="wc-go"><i class="fas fa-arrow-up-right-from-square"></i></div>
+                    </article>
+
+                </div>
             </div>
-            <div class="contact-list">
-                <a href="mailto:panchalbhavya145@gmail.com" class="contact-item">
-                    <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                    <span class="contact-detail">
-                        <span class="contact-label">Email</span>
-                        <span class="contact-value">panchalbhavya145@gmail.com</span>
-                    </span>
-                    <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
+        </section>
+
+        <!-- ============ EXPERTISE ============ -->
+        <section class="expertise" id="expertise">
+            <div class="container">
+                <div class="m-label reveal"><span>03</span> Expertise</div>
+                <ul class="exp-list">
+                    <li class="exp-item reveal" data-cursor="hover">
+                        <span class="ei-num">01</span>
+                        <span class="ei-name">Frontend Engineering</span>
+                        <span class="ei-desc">React · Next.js · TypeScript · GSAP</span>
+                        <span class="ei-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </li>
+                    <li class="exp-item reveal" data-cursor="hover">
+                        <span class="ei-num">02</span>
+                        <span class="ei-name">Backend &amp; APIs</span>
+                        <span class="ei-desc">Node · Express · PostgreSQL · GraphQL</span>
+                        <span class="ei-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </li>
+                    <li class="exp-item reveal" data-cursor="hover">
+                        <span class="ei-num">03</span>
+                        <span class="ei-name">AI &amp; Prompt Systems</span>
+                        <span class="ei-desc">LLM integration · Automation · RAG</span>
+                        <span class="ei-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </li>
+                    <li class="exp-item reveal" data-cursor="hover">
+                        <span class="ei-num">04</span>
+                        <span class="ei-name">Cybersecurity</span>
+                        <span class="ei-desc">Pentesting · OWASP · OSINT</span>
+                        <span class="ei-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </li>
+                    <li class="exp-item reveal" data-cursor="hover">
+                        <span class="ei-num">05</span>
+                        <span class="ei-name">Creative Motion</span>
+                        <span class="ei-desc">WebGL · Three.js · Scroll systems</span>
+                        <span class="ei-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="m-label reveal"><span>04</span> Contact</div>
+                <h2 class="c-title">
+                    <span class="ht-line"><span class="ht-word">LET'S BUILD</span></span>
+                    <span class="ht-line ht-indent"><span class="ht-word ht-stroke">SOMETHING</span></span>
+                    <span class="ht-line ht-right"><span class="ht-word"><em>BOLD</em></span></span>
+                </h2>
+
+                <a href="mailto:panchchalbhavya145@gmail.com" class="c-mail" data-magnetic data-cursor="mail">
+                    panchchalbhavya145@gmail.com
                 </a>
-                <a href="https://github.com/bhavypanchal12/" target="_blank" class="contact-item">
-                    <span class="contact-icon"><i class="fab fa-github"></i></span>
-                    <span class="contact-detail">
-                        <span class="contact-label">GitHub</span>
-                        <span class="contact-value">bhavypanchal12</span>
-                    </span>
-                    <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href="https://www.linkedin.com/in/bhavy-panchal/" target="_blank" class="contact-item">
-                    <span class="contact-icon"><i class="fab fa-linkedin-in"></i></span>
-                    <span class="contact-detail">
-                        <span class="contact-label">LinkedIn</span>
-                        <span class="contact-value">Bhavy Panchal</span>
-                    </span>
-                    <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href="tel:+919875094665" class="contact-item">
-                    <span class="contact-icon"><i class="fas fa-phone"></i></span>
-                    <span class="contact-detail">
-                        <span class="contact-label">Phone</span>
-                        <span class="contact-value">+91 98750 94665</span>
-                    </span>
-                    <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
+                <div class="c-row">
+                    <a href="https://github.com/bhavypanchal12/" target="_blank" class="c-chip" data-cursor="go">GitHub <i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/bhavy-panchal" target="_blank" class="c-chip" data-cursor="go">LinkedIn <i class="fab fa-linkedin-in"></i></a>
+                    <a href="tel:+919875094665" class="c-chip" data-cursor="go">+91 98750 94665</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">⚡ BHAVY PANCHAL</div>
-                <p>© 2024 | Built with 💻 by Bhavy Panchal</p>
+        <div class="container f-inner">
+            <div class="f-big" aria-hidden="true">BHAVY PANCHAL</div>
+            <div class="f-row">
+                <span>© <span id="year"></span> — All rights reserved</span>
+                <span>Designed &amp; engineered in Gujarat</span>
+                <a href="#hero" data-cursor="up">Back to top <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
